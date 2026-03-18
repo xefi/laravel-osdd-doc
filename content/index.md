@@ -1,21 +1,18 @@
 ---
 seo:
-  title: Nuxt Docs Template
-  description: Create stunning, fast and SEO-optimized documentation sites with Nuxt UI.
+  title: Laravel OSDD
+  description: Open Source Driven Development — a layered architecture pattern for Laravel applications.
 ---
 
-::u-page-hero{class="dark:bg-gradient-to-b from-neutral-900 to-neutral-950"}
+::u-page-hero{class="dark:bg-gradient-to-b from-zinc-900 to-zinc-950"}
 ---
 orientation: horizontal
 ---
-#top
-:hero-background
-
 #title
-Ship Beautiful [Documentation]{.text-primary}.
+Build Laravel apps with [Layered Architecture]{.text-primary}.
 
 #description
-Build professional documentation with Nuxt UI's powerful components, enhanced typography, and seamless Nuxt Content integration. The same system trusted by the entire [Nuxt ecosystem](https://nuxt.com).
+**Laravel OSDD** brings Open Source Driven Development to Laravel. Organize your application into independent, composable layers — each a full Composer package with its own models, migrations, seeders, and service providers.
 
 #links
   :::u-button
@@ -33,178 +30,69 @@ Build professional documentation with Nuxt UI's powerful components, enhanced ty
   color: neutral
   variant: outline
   size: xl
-  to: https://github.com/nuxt-ui-templates/docs
+  to: https://github.com/xefi/laravel-osdd
   target: _blank
   ---
-  Use this template
+  View on GitHub
   :::
 
 #default
   :::prose-pre
   ---
   code: |
-    export default defineNuxtConfig({
-      modules: [
-        '@nuxt/ui',
-        '@nuxt/content',
-        'nuxt-og-image',
-        'nuxt-llms'
-      ],
+    composer require xefi/laravel-osdd
 
-      css: ['~/assets/css/main.css']
-    })
-  filename: nuxt.config.ts
+    php artisan osdd:start
+  filename: Terminal
   ---
 
-  ```ts [nuxt.config.ts]
-  export default defineNuxtConfig({
-    modules: [
-      '@nuxt/ui',
-      '@nuxt/content',
-      'nuxt-og-image',
-      'nuxt-llms'
-    ],
+  ```bash [Terminal]
+  composer require xefi/laravel-osdd
 
-    css: ['~/assets/css/main.css']
-  })
+  php artisan osdd:start
   ```
   :::
 ::
 
-::u-page-section{class="dark:bg-neutral-950"}
+::u-page-section{class="dark:bg-zinc-950"}
 #title
-Powered by Nuxt UI components
+One command to restructure everything
 
-#links
-  :::u-button
-  ---
-  color: neutral
-  size: lg
-  target: _blank
-  to: https://ui.nuxt.com/docs/getting-started/installation/nuxt
-  trailingIcon: i-lucide-arrow-right
-  variant: subtle
-  ---
-  Explore Nuxt UI
-  :::
+#description
+Run `php artisan osdd:start` on a fresh Laravel project and OSDD automatically sets up your layered architecture — no manual wiring required.
 
 #features
-  :::u-page-feature
-  ---
-  icon: i-lucide-palette
-  ---
-  #title
-  100+ UI Components
-
-  #description
-  Access the complete Nuxt UI component library. From badges to modals, everything styled and accessible out of the box.
-  :::
-
-  :::u-page-feature
-  ---
-  icon: i-lucide-type
-  ---
-  #title
-  Beautiful Typography
-
-  #description
-  Pre-styled prose components with perfect visual harmony. No need for @tailwindcss/typography - get precise control over every element.
-  :::
-
   :::u-page-feature
   ---
   icon: i-lucide-layers
   ---
   #title
-  Rich Prose Components
+  Independent Layers
 
   #description
-  Accordions, cards, callouts, tabs, steps, code blocks, and more - all provided by Nuxt UI for interactive documentation.
+  Each domain concern lives as its own Composer package inside `functional/` or `technical/`. Layers are isolated, testable, and reusable across projects.
   :::
 
   :::u-page-feature
   ---
-  icon: i-lucide-search
+  icon: i-lucide-package
   ---
   #title
-  Built-in Search
+  Composer-native
 
   #description
-  Full-text search with ContentSearch component. No need for Algolia - instant, relevant results with keyboard shortcuts (⌘K).
+  Layers are registered as Composer path repositories. Laravel auto-discovers their service providers — no manual bootstrapping needed.
   :::
 
   :::u-page-feature
   ---
-  icon: i-lucide-navigation
+  icon: i-lucide-terminal
   ---
   #title
-  Smart Navigation
+  Layer-aware Artisan Commands
 
   #description
-  Auto-generated navigation with ContentNavigation and ContentToc components. Sticky table of contents and prev/next links.
-  :::
-
-  :::u-page-feature
-  ---
-  icon: i-lucide-moon
-  ---
-  #title
-  Dark Mode Ready
-
-  #description
-  Automatic theme switching with smooth transitions. Respects system preferences and remembers user choice.
-  :::
-::
-
-::u-page-section{class="dark:bg-neutral-950"}
-#title
-Enhanced with Nuxt Content
-
-#links
-  :::u-button
-  ---
-  color: neutral
-  size: lg
-  target: _blank
-  to: https://content.nuxt.com/docs/getting-started/installation
-  trailingIcon: i-lucide-arrow-right
-  variant: subtle
-  ---
-  Explore Nuxt Content
-  :::
-
-#features
-  :::u-page-feature
-  ---
-  icon: i-simple-icons-markdown
-  ---
-  #title
-  MDC Enhanced Markdown
-
-  #description
-  Write in Markdown while embedding Vue components. Seamlessly integrate interactive elements in your content.
-  :::
-
-  :::u-page-feature
-  ---
-  icon: i-lucide-file-text
-  ---
-  #title
-  File-based Routing
-
-  #description
-  Organize content in folders and files. Your documentation structure automatically becomes your navigation.
-  :::
-
-  :::u-page-feature
-  ---
-  icon: i-lucide-code
-  ---
-  #title
-  Syntax Highlighting
-
-  #description
-  Beautiful code blocks with language detection, line numbers, and copy buttons. Support for 100+ languages.
+  Every standard `make:*` command has an `osdd:*` counterpart. Files land inside the correct layer, not a global `app/` directory.
   :::
 
   :::u-page-feature
@@ -212,21 +100,63 @@ Enhanced with Nuxt Content
   icon: i-lucide-database
   ---
   #title
-  Content Database
+  Cross-layer Seeding
 
   #description
-  Query your content with a MongoDB-like API. Filter, sort, and search through your documentation programmatically.
+  Register seeders from any layer's service provider. `php artisan osdd:seed` runs all of them in one go.
   :::
 
   :::u-page-feature
   ---
-  icon: i-lucide-file-code
+  icon: i-lucide-flask-conical
   ---
   #title
-  Frontmatter Support
+  Per-layer Test Suites
 
   #description
-  Add metadata to your content files. Define SEO tags, navigation properties, and custom fields.
+  Run `php artisan osdd:phpunit` to auto-register each layer's test directory in `phpunit.xml`. Test layers individually with `--testsuite`.
+  :::
+
+  :::u-page-feature
+  ---
+  icon: i-lucide-settings-2
+  ---
+  #title
+  Config Override System
+
+  #description
+  Use `overrideConfigFrom()` in any layer to deep-merge config values over defaults — layer-level configuration always wins.
+  :::
+::
+
+::u-page-section{class="dark:bg-zinc-950"}
+#title
+A clear architecture for every concern
+
+#description
+OSDD separates your application into two top-level buckets, keeping business logic and infrastructure concerns cleanly apart.
+
+#features
+  :::u-page-feature
+  ---
+  icon: i-lucide-briefcase
+  ---
+  #title
+  functional/
+
+  #description
+  Domain layers that represent business concerns — `functional/users`, `functional/orders`, `functional/billing`. Each owns its own models, migrations, and seeders.
+  :::
+
+  :::u-page-feature
+  ---
+  icon: i-lucide-cpu
+  ---
+  #title
+  technical/
+
+  #description
+  Infrastructure layers shared across the application — auth adapters, event buses, queue configuration. Keeps cross-cutting concerns in one place.
   :::
 
   :::u-page-feature
@@ -234,30 +164,28 @@ Enhanced with Nuxt Content
   icon: i-lucide-git-branch
   ---
   #title
-  Version Control
+  Scalable by Design
 
   #description
-  Content lives in your repository. Branch, review, and deploy documentation alongside your code.
+  Add new layers without touching existing ones. The architecture scales naturally from a small app to a large monorepo — no big-bang refactors required.
   :::
 ::
 
-::u-page-section{class="dark:bg-gradient-to-b from-neutral-950 to-neutral-900"}
+::u-page-section{class="dark:bg-gradient-to-b from-zinc-950 to-zinc-900"}
   :::u-page-c-t-a
   ---
   links:
-    - label: Start building
+    - label: Read the docs
       to: '/getting-started'
       trailingIcon: i-lucide-arrow-right
     - label: View on GitHub
-      to: 'https://github.com/nuxt-ui-templates/docs'
+      to: 'https://github.com/xefi/laravel-osdd'
       target: _blank
       variant: subtle
       icon: i-simple-icons-github
-  title: Ready to build an amazing documentation?
-  description: Join thousands of developers building with Nuxt and Nuxt UI. Get this template and start shipping today.
-  class: dark:bg-neutral-950
+  title: Ready to layer your Laravel app?
+  description: Install Laravel OSDD and bring structure, clarity, and composability to your application architecture.
+  class: dark:bg-zinc-950
   ---
-
-  :stars-bg
   :::
 ::

@@ -21,6 +21,9 @@ export default defineNuxtConfig({
       markdown: {
         toc: {
           searchDepth: 1
+        },
+        highlight: {
+          langs: ['php', 'bash', 'json', 'xml']
         }
       }
     }
@@ -56,12 +59,12 @@ export default defineNuxtConfig({
   },
 
   llms: {
-    domain: 'https://docs-template.nuxt.dev/',
-    title: 'Nuxt Docs Template',
-    description: 'A template for building documentation with Nuxt UI and Nuxt Content.',
+    domain: 'https://laravel-osdd.dev/',
+    title: 'Laravel OSDD',
+    description: 'Open Source Driven Development — a layered architecture pattern for Laravel applications.',
     full: {
-      title: 'Nuxt Docs Template - Full Documentation',
-      description: 'This is the full documentation for the Nuxt Docs Template.'
+      title: 'Laravel OSDD - Full Documentation',
+      description: 'Full documentation for the Laravel OSDD package by Xefi.'
     },
     sections: [
       {
@@ -72,16 +75,30 @@ export default defineNuxtConfig({
         ]
       },
       {
-        title: 'Essentials',
+        title: 'Layers',
         contentCollection: 'docs',
         contentFilters: [
-          { field: 'path', operator: 'LIKE', value: '/essentials%' }
+          { field: 'path', operator: 'LIKE', value: '/layers%' }
+        ]
+      },
+      {
+        title: 'Commands',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/commands%' }
+        ]
+      },
+      {
+        title: 'API Reference',
+        contentCollection: 'docs',
+        contentFilters: [
+          { field: 'path', operator: 'LIKE', value: '/api%' }
         ]
       }
     ]
   },
 
   mcp: {
-    name: 'Docs template'
+    name: 'Laravel OSDD Docs'
   }
 })
