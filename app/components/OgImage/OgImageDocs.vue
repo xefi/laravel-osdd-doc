@@ -43,13 +43,13 @@ const description = computed(() => (props.description || '').slice(0, 200))
     </svg>
 
     <!-- Logo -->
-    <div class="flex items-center gap-[24px]">
-      <svg width="90" height="60" viewBox="0 0 75.05 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div style="display: flex; flex-direction: row; align-items: center; gap: 20px;">
+      <svg width="72" height="48" viewBox="0 0 75.05 50" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="m75.05,49.97h-28.77l-9.8-10.36-.26-31.16L43.92.08h29.31l-22.2,24.09,24.02,25.8Z" fill="#fefefe" />
         <path d="m27.03,50H0l23.8-25.84L1.61,0h27.04l22.3,24.16-23.92,25.84Z" fill="#e94646" />
       </svg>
-      <div class="w-[2px] h-[48px] bg-[#3f3f46]" />
-      <span class="text-[36px] font-semibold text-white">Laravel OSDD</span>
+      <div style="width: 2px; height: 40px; background-color: #3f3f46;" />
+      <span style="font-size: 32px; font-weight: 600; color: white;">Laravel OSDD</span>
     </div>
 
     <!-- Text content -->
